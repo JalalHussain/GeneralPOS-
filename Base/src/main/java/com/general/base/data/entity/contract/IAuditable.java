@@ -32,4 +32,13 @@ public interface IAuditable<U> {
       Date getModifiedDate();
 
       void setModifiedDate(Date modifiedDate);
+
+      String getPrimaryKeyColumns();
+
+      String getPrimaryKeyValues();
+
+      String getNonPrimaryKeyColumns();
+
+      String getNonPrimaryKeyValues();
+
 }
