@@ -80,27 +80,5 @@ public abstract class Auditable implements IAuditable {
         this.modifiedDate = modifiedDate;
     }
 
-    /*@Transient
-    @Override
-    public String getPrimaryKeyColumns() {
-        return null;
-    }
 
-    @Transient
-    @Override
-    public String getPrimaryKeyValues() {
-        return null;
-    }
-
-    @Transient
-    @Override
-    public String getNonPrimaryKeyColumns() {
-        return null;
-    }
-
-    @Transient
-    @Override
-    public String getNonPrimaryKeyValues() {
-        return null;
-    }*/
 }

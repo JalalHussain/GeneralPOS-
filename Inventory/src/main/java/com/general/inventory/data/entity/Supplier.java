@@ -2,10 +2,7 @@ package com.general.inventory.data.entity;
 
 import com.general.base.data.entity.Auditable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 
@@ -73,21 +70,25 @@ public class Supplier extends Auditable {
         this.phoneNumber = phoneNumber;
     }
 
+    @Transient
     @Override
     public String getPrimaryKeyColumns() {
         return String.join("~~","SP_SUP_ID");
     }
 
+    @Transient
     @Override
     public String getPrimaryKeyValues() {
         return String.join("~~",this.getId());
     }
 
+    @Transient
     @Override
     public String getNonPrimaryKeyColumns() {
         return String.join("~~","SP_SUP_NAME","SP_SUP_DESC","SP_SUP_ADDRESS","SP_SUP_PHNO");
     }
 
+    @Transient
     @Override
     public String getNonPrimaryKeyValues() {
         return String.join("~~",this.getName(), this.getDescription(), this.getAddress(), this.getPhoneNumber());

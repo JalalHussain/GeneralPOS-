@@ -121,21 +121,25 @@ public class InventoryTransactionDetail extends Auditable {
 */
 
 
+    @Transient
     @Override
     public String getPrimaryKeyColumns() {
         return String.join("~~","TR_TRA_DTL_ID","TR_TRA_ID","PR_PRO_ID");
     }
 
+    @Transient
     @Override
     public String getPrimaryKeyValues() {
         return String.join("~~",this.getId(), this.getInventoryTransactionId(),this.getProductId());
     }
 
+    @Transient
     @Override
     public String getNonPrimaryKeyColumns() {
         return String.join("~~","TR_TRA_DTL_QTY","TR_TRA_DTL_USP","TR_TRA_DTL_UPP","TR_TRA_DTL_DESC");
     }
 
+    @Transient
     @Override
     public String getNonPrimaryKeyValues() {
         return String.join("~~",String.valueOf(this.getQuantity()),String.valueOf(this.getUnitSalePrivce()),
