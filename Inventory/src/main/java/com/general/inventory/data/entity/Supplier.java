@@ -72,5 +72,25 @@ public class Supplier extends Auditable {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    @Override
+    public String getPrimaryKeyColumns() {
+        return String.join("~~","SP_SUP_ID");
+    }
+
+    @Override
+    public String getPrimaryKeyValues() {
+        return String.join("~~",this.getId());
+    }
+
+    @Override
+    public String getNonPrimaryKeyColumns() {
+        return String.join("~~","SP_SUP_NAME","SP_SUP_DESC","SP_SUP_ADDRESS","SP_SUP_PHNO");
+    }
+
+    @Override
+    public String getNonPrimaryKeyValues() {
+        return String.join("~~",this.getName(), this.getDescription(), this.getAddress(), this.getPhoneNumber());
+    }
 }
 

@@ -72,4 +72,24 @@ public class Category extends Auditable {
     public void setProducts(Collection<Product> products) {
         this.products = products;
     }
+
+    @Override
+    public String getPrimaryKeyColumns() {
+        return String.join("~~","CT_CAT_ID");
+    }
+
+    @Override
+    public String getPrimaryKeyValues() {
+        return String.join("~~",this.getId());
+    }
+
+    @Override
+    public String getNonPrimaryKeyColumns() {
+        return String.join("~~","CT_CAT_NAME","CT_CAT_DESC");
+    }
+
+    @Override
+    public String getNonPrimaryKeyValues() {
+        return String.join("~~",this.getName(), this.getDescription());
+    }
 }

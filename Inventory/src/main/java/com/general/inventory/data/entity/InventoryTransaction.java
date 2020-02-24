@@ -52,6 +52,26 @@ public class InventoryTransaction extends Auditable {
         this.description = description;
     }
 
+    @Override
+    public String getPrimaryKeyColumns() {
+        return String.join("~~","TR_TRA_ID");
+    }
+
+    @Override
+    public String getPrimaryKeyValues() {
+        return String.join("~~",this.getId());
+    }
+
+    @Override
+    public String getNonPrimaryKeyColumns() {
+        return String.join("~~","TR_TRA_DATETIME","TR_TRA_DESC");
+    }
+
+    @Override
+    public String getNonPrimaryKeyValues() {
+        return String.join("~~",String.valueOf(this.getDateTime()),this.getDescription());
+    }
+
   /*  @JsonIgnore
     @OneToMany(mappedBy="inventoryTransaction")
     public Collection<InventoryTransactionDetail> getInventoryTransactionDetails() {

@@ -39,28 +39,28 @@ public class InventoryTransactionDetail extends Auditable {
         this.id = id;
     }
 
-    /*@JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "TR_TRA_ID", insertable = false, updatable = false)
-    public InventoryTransaction getInventoryTransaction() {
-        return inventoryTransaction;
+    @Id
+    @NotNull
+    @Column(name="TR_TRA_ID")
+    public String getInventoryTransactionId() {
+        return inventoryTransactionId;
     }
 
-    public void setInventoryTransaction(InventoryTransaction inventoryTransaction) {
-        this.inventoryTransaction = inventoryTransaction;
+    public void setInventoryTransactionId(String inventoryTransactionId) {
+        this.inventoryTransactionId = inventoryTransactionId;
     }
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "PR_PRO_ID", insertable = false, updatable = false)
-    public Product getProduct() {
-        return product;
+    @Id
+    @NotNull
+    @Column(name= "PR_PRO_ID")
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
-*/
+
     @Column(name = "TR_TRA_DTL_QTY")
     public Integer getQuantity() {
         return quantity;
@@ -97,25 +97,48 @@ public class InventoryTransactionDetail extends Auditable {
         this.description = description;
     }
 
-    @Id
-    @NotNull
-    @Column(name="TR_TRA_ID")
-    public String getInventoryTransactionId() {
-        return inventoryTransactionId;
+    /*@JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "TR_TRA_ID", insertable = false, updatable = false)
+    public InventoryTransaction getInventoryTransaction() {
+        return inventoryTransaction;
     }
 
-    public void setInventoryTransactionId(String inventoryTransactionId) {
-        this.inventoryTransactionId = inventoryTransactionId;
+    public void setInventoryTransaction(InventoryTransaction inventoryTransaction) {
+        this.inventoryTransaction = inventoryTransaction;
     }
 
-    @Id
-    @NotNull
-    @Column(name= "PR_PRO_ID")
-    public String getProductId() {
-        return productId;
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "PR_PRO_ID", insertable = false, updatable = false)
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+*/
+
+
+    @Override
+    public String getPrimaryKeyColumns() {
+        return String.join("~~","TR_TRA_DTL_ID","TR_TRA_ID","PR_PRO_ID");
+    }
+
+    @Override
+    public String getPrimaryKeyValues() {
+        return String.join("~~",this.getId(), this.getInventoryTransactionId(),this.getProductId());
+    }
+
+    @Override
+    public String getNonPrimaryKeyColumns() {
+        return String.join("~~","TR_TRA_DTL_QTY","TR_TRA_DTL_USP","TR_TRA_DTL_UPP","TR_TRA_DTL_DESC");
+    }
+
+    @Override
+    public String getNonPrimaryKeyValues() {
+        return String.join("~~",String.valueOf(this.getQuantity()),String.valueOf(this.getUnitSalePrivce()),
+                String.valueOf(this.getUnitPurchasePrice()), String.valueOf(this.getDescription()));
     }
 }
